@@ -20,8 +20,4 @@ public abstract class CheckModifier implements Check {
     static protected String formatModifier(int modifier) {
         return (modifier > 0 ? " +" + modifier : (modifier < 0 ? " " + modifier : ""));
     }
-
-    static protected String formatBold(int modifier) {
-        return "<b>" + modifier + "</b>";
-    }
 }
