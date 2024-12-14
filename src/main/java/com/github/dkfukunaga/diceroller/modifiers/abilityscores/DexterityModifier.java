@@ -1,21 +1,24 @@
-package com.github.dkfukunaga.diceroller;
+package com.github.dkfukunaga.diceroller.modifiers.abilityscores;
 
+import com.github.dkfukunaga.diceroller.DiceBase;
+import com.github.dkfukunaga.diceroller.DiceModifier;
+import com.github.dkfukunaga.diceroller.RollResult;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.util.Objects;
 
-public class StrengthModifier extends DiceModifier {
+public class DexterityModifier extends DiceModifier {
     private final int modifier;
 
-    public StrengthModifier(DiceBase diceRoll, int modifier) {
+    public DexterityModifier(DiceBase diceRoll, int modifier) {
         super(diceRoll);
         this.modifier = modifier;
     }
 
     @Override
     public String getName() {
-        return diceRoll.getName() + ", Strength";
+        return diceRoll.getName() + ", Dexterity";
     }
 
     @Override
@@ -26,7 +29,7 @@ public class StrengthModifier extends DiceModifier {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof StrengthModifier that)) return false;
+        if (!(o instanceof DexterityModifier that)) return false;
         return modifier == that.modifier;
     }
 
@@ -37,7 +40,7 @@ public class StrengthModifier extends DiceModifier {
 
     @Override
     public String toString() {
-        return "StrengthModifier{" +
+        return "DexterityModifier{" +
                 "modifier=" + modifier +
                 ", diceRoll=" + diceRoll +
                 '}';
