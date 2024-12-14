@@ -1,6 +1,8 @@
 package com.github.dkfukunaga.diceroller;
 
-public interface Check {
+public interface DiceBase {
     String getName();
-    CheckResult getResult();
+    RollResult getResult();
 }
+
+
