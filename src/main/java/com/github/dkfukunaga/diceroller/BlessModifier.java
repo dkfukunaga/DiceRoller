@@ -4,22 +4,14 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class BlessModifier extends DiceModifier {
-    private final RollType rollType;
-    private final Supplier<Integer> dieRoll;
-
-    private static final Random RAND = new Random();
+public class BlessModifier extends RolledModifier {
 
     public BlessModifier(DiceBase diceRoll) {
-        super(diceRoll);
-        this.rollType = RollType.REGULAR;
-        this.dieRoll = () -> RAND.nextInt(4) + 1;
+        super(diceRoll, 4);
     }
 
     public BlessModifier(DiceBase baseDiceBase, RollType rollType) {
-        super(baseDiceBase);
-        this.rollType = rollType;
-        this.dieRoll = () -> RAND.nextInt(4) + 1;
+        super(baseDiceBase, 4, rollType);
     }
 
     @Override
@@ -28,27 +20,17 @@ public class BlessModifier extends DiceModifier {
     }
 
     @Override
-    public RollResult getResult() {
-        return DiceUtils.diceRollResult(rollType, dieRoll, diceRoll.getResult());
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BlessModifier that)) return false;
-        return rollType == that.rollType && Objects.equals(dieRoll, that.dieRoll);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rollType, dieRoll);
+        return getDiceSize() == that.getDiceSize() && getRollType() == that.getRollType();
     }
 
     @Override
     public String toString() {
         return "BlessModifier{" +
-                "rollType=" + rollType +
-                ", dieRoll=" + dieRoll +
+                "rollType=" + getRollType() +
+                ", diceSize=" + getDiceSize() +
                 ", diceRoll=" + diceRoll +
                 '}';
     }
