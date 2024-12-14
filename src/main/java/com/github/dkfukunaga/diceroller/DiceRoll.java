@@ -45,7 +45,7 @@ public class DiceRoll implements DiceBase {
 
     @Override
     public RollResult getResult() {
-        return DiceUtils.diceRollResult(rollType, diceSize);
+        return DiceUtils.diceRollResult(rollType, diceSize, ModifierType.BASE);
     }
 
     @Override

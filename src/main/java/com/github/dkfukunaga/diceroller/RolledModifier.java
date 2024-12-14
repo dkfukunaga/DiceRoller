@@ -28,7 +28,7 @@ public abstract class RolledModifier extends DiceModifier {
 
     @Override
     public RollResult getResult() {
-        return DiceUtils.diceRollResult(getRollType(), getDiceSize());
+        return DiceUtils.diceRollResult(getRollType(), getDiceSize(), diceRoll.getResult());
     }
 
     @Override
