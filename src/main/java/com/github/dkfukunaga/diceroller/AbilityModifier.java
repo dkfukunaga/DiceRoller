@@ -24,7 +24,7 @@ public class AbilityModifier extends CheckModifier {
     public CheckResult getResult() {
         TextFlow newText = new TextFlow();
         newText.getChildren().addAll(baseCheck.getResult().text().getChildren());
-        newText.getChildren().add(new Text(formatModifier(modifier)));
+        newText.getChildren().add(new Text(" " + formatModifier(modifier)));
 
         return new CheckResult(baseCheck.getResult().total() + modifier, newText);
     }

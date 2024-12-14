@@ -50,7 +50,7 @@ public class DiceModifier extends CheckModifier {
 
     private CheckResult handleRegular(TextFlow newText) {
         int roll = dieRoll.get();
-        newText.getChildren().add(new Text(formatModifier(roll)));
+        newText.getChildren().add(new Text(" " + formatModifier(roll)));
         return new CheckResult(baseCheck.getResult().total() + roll, newText);
     }
 
@@ -75,13 +75,13 @@ public class DiceModifier extends CheckModifier {
             addFormattedRolls(newText, roll, roll2, false);
             roll = roll2;
         } else {
-            newText.getChildren().add(new Text(formatModifier(roll)));
+            newText.getChildren().add(new Text(" " + formatModifier(roll)));
         }
         return new CheckResult(baseCheck.getResult().total() + roll, newText);
     }
 
     private void addFormattedRolls(TextFlow newText, int roll1, int roll2, boolean firstBold) {
-        newText.getChildren().add(new Text("+("));
+        newText.getChildren().add(new Text(" +("));
         if (firstBold) {
             Text boldText = new Text(Integer.toString(roll1));
             boldText.setStyle("-fx-font-weight: bold");
@@ -100,7 +100,8 @@ public class DiceModifier extends CheckModifier {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof DiceModifier that)) return false;
-        return Objects.equals(getName(), that.getName()) && Objects.equals(dieRoll, that.dieRoll) && rollType == that.rollType;
+        return Objects.equals(getName(), that.getName()) && Objects.equals(dieRoll, that.dieRoll) &&
+                rollType == that.rollType;
     }
 
     @Override
