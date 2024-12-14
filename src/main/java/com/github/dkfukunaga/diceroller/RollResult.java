@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class RollResult {
     private int total;
-    private TextFlow text;
+    private final TextFlow text;
 
     public RollResult(int total, TextFlow text) {
         this.total = total;
