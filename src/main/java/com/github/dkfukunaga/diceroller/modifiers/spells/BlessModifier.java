@@ -1,4 +1,8 @@
-package com.github.dkfukunaga.diceroller;
+package com.github.dkfukunaga.diceroller.modifiers.spells;
+
+import com.github.dkfukunaga.diceroller.DiceBase;
+import com.github.dkfukunaga.diceroller.RollType;
+import com.github.dkfukunaga.diceroller.RolledModifier;
 
 public class BlessModifier extends RolledModifier {
 
@@ -12,7 +16,7 @@ public class BlessModifier extends RolledModifier {
 
     @Override
     public String getName() {
-        return diceRoll.getName() + ", Bless";
+        return diceRoll.getName() + ", Bless (1d4)";
     }
 
     @Override
