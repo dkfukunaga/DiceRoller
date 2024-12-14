@@ -1,9 +1,5 @@
 package com.github.dkfukunaga.diceroller;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.function.Supplier;
-
 public class BlessModifier extends RolledModifier {
 
     public BlessModifier(DiceBase diceRoll) {
@@ -37,11 +33,13 @@ public class BlessModifier extends RolledModifier {
 }
 
 
-// ChatGPT suggested unit test:
-//@Test
-//public void testHandleReroll() {
-//    DiceModifier modifier = new DiceModifier(baseCheck, "Test Reroll", 6);
-//    when(modifier.dieRoll.get()).thenReturn(1, 4); // Simulate a roll of 1 and then 4
-//    CheckResult result = modifier.getResult();
-//    assertEquals(baseCheck.getResult().total() + 4, result.total());
-//}
+/*
+ ChatGPT suggested unit test:
+@Test
+public void testHandleReroll() {
+    DiceModifier modifier = new DiceModifier(baseCheck, "Test Reroll", 6);
+    when(modifier.dieRoll.get()).thenReturn(1, 4); // Simulate a roll of 1 and then 4
+    CheckResult result = modifier.getResult();
+    assertEquals(baseCheck.getResult().total() + 4, result.total());
+}
+*/
