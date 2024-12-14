@@ -8,8 +8,8 @@ import java.util.Objects;
 public class StrengthModifier extends DiceModifier {
     private final int modifier;
 
-    public StrengthModifier(DiceBase baseDiceBase, int modifier) {
-        super(baseDiceBase);
+    public StrengthModifier(DiceBase diceRoll, int modifier) {
+        super(diceRoll);
         this.modifier = modifier;
     }
 
