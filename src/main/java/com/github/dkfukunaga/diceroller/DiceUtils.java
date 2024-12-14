@@ -4,19 +4,20 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+import java.util.Random;
 
 public class DiceUtils {
+    private static final Random RAND = new Random();
 
-    static public RollResult diceRollResult(RollType rollType, Supplier<Integer> dieRoll) {
+    static public RollResult diceRollResult(RollType rollType, int diceSize) {
 
-        int roll = dieRoll.get();
+        int roll = roll(diceSize);
         return switch (rollType) {
             case REGULAR -> {
                 yield new RollResult(roll, new TextFlow(new Text(Integer.toString(roll))));
             }
             case ADVANTAGE, DISADVANTAGE -> {
-                int roll2 = dieRoll.get();
+                int roll2 = roll(diceSize);
                 RollResult result = null;
                 if (rollType == RollType.ADVANTAGE) {
                     result = new RollResult(Math.max(roll, roll2), formatRoll(roll, roll2, roll > roll2));
@@ -27,7 +28,7 @@ public class DiceUtils {
             }
             case REROLL_1, REROLL_1_2 -> {
                 if (roll <= (rollType == RollType.REROLL_1 ? 1 : 2)) {
-                    int roll2 = dieRoll.get();
+                    int roll2 = roll(diceSize);
                     yield new RollResult(roll2, formatRoll(roll, roll2, false));
                 }
                 yield new RollResult(roll, new TextFlow(new Text(Integer.toString(roll))));
@@ -36,8 +37,12 @@ public class DiceUtils {
         };
     }
 
-    static public RollResult diceRollResult(RollType rollType, Supplier<Integer> dieRoll, @NotNull RollResult result) {
-        return result.addAll(diceRollResult(rollType, dieRoll));
+    static public RollResult diceRollResult(RollType rollType, int diceSize, @NotNull RollResult result) {
+        return result.addAll(diceRollResult(rollType, diceSize));
+    }
+
+    static private int roll(int diceSize) {
+        return RAND.nextInt(diceSize) + 1;
     }
 
     static private TextFlow formatRoll(int roll1, int roll2, boolean firstBold) {
