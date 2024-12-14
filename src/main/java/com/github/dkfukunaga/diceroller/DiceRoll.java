@@ -5,37 +5,33 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class DiceRoll implements DiceBase {
-    private final int dieSize;
-    private final int dieNum;
+    private final int diceSize;
+    private final int diceNum;
     private final RollType rollType;
-    private final Supplier<Integer> dieRoll;
 
-    private static final Random RAND = new Random();
-
-    public DiceRoll(int dieSize, int dieNum, RollType rollType) {
-        if (dieNum < 1) {
+    public DiceRoll(int diceSize, int diceNum, RollType rollType) {
+        if (diceNum < 1) {
             throw new InvalidDiceException("Must roll at least 1 die");
         }
-        if (dieSize < 2) {
+        if (diceSize < 2) {
             throw new InvalidDiceException("Dice must have at least 2 faces");
         }
 
-        this.dieSize = dieSize;
-        this.dieNum = dieNum;
+        this.diceSize = diceSize;
+        this.diceNum = diceNum;
         this.rollType = rollType;
-        this.dieRoll = () -> RAND.nextInt(dieSize) + 1;
     }
 
-    public DiceRoll(int dieSize, int dieNum) {
-        this(dieSize, dieNum, RollType.REGULAR);
+    public DiceRoll(int diceSize, int diceNum) {
+        this(diceSize, diceNum, RollType.REGULAR);
     }
 
-    public int getDieSize() {
-        return dieSize;
+    public int getDiceSize() {
+        return diceSize;
     }
 
-    public int getDieNum() {
-        return dieNum;
+    public int getDiceNum() {
+        return diceNum;
     }
 
     public RollType getRollType() {
@@ -44,34 +40,32 @@ public class DiceRoll implements DiceBase {
 
     @Override
     public String getName() {
-        return (dieNum > 0 ? dieNum + "d" : "d") + dieSize;
+        return (diceNum > 0 ? diceNum + "d" : "d") + diceSize;
     }
 
     @Override
     public RollResult getResult() {
-        return DiceUtils.diceRollResult(rollType, dieRoll);
+        return DiceUtils.diceRollResult(rollType, diceSize);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof DiceRoll diceRoll)) return false;
-        return getDieSize() == diceRoll.getDieSize() && getDieNum() == diceRoll.getDieNum() &&
-                getRollType() == diceRoll.getRollType() && Objects.equals(dieRoll, diceRoll.dieRoll);
+        return getDiceSize() == diceRoll.getDiceSize() && getDiceNum() == diceRoll.getDiceNum() && getRollType() == diceRoll.getRollType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDieSize(), getDieNum(), getRollType(), dieRoll);
+        return Objects.hash(getDiceSize(), getDiceNum(), getRollType());
     }
 
     @Override
     public String toString() {
-        return "RollCheck{" +
-                "dieSize=" + dieSize +
-                ", dieNum=" + dieNum +
+        return "DiceRoll{" +
+                "diceSize=" + diceSize +
+                ", diceNum=" + diceNum +
                 ", rollType=" + rollType +
-                ", dieRoll=" + dieRoll +
                 '}';
     }
 }
